@@ -3,20 +3,22 @@
 #include <stddef.h>
 #include <cmocka.h>
 
+#include "TestOperations.h"
+
 static void test([[maybe_unused]] void **state) {
     assert_int_equal(2, 2);
 }
 
-static void test2([[maybe_unused]] void **state) {
-    assert_int_equal(2, 2);
+static void testExampleOperation([[maybe_unused]] void **state) {
+    assert_int_equal(2, returnValue());
 }
 
 int main() {
-    const struct CMUnitTest tests[] =
+    const struct CMUnitTest UnitTests[] =
             {
                     cmocka_unit_test(test),
-                    cmocka_unit_test(test2),
+                    cmocka_unit_test(testExampleOperation),
             };
 
-    return cmocka_run_group_tests(tests, NULL, NULL);
+    return cmocka_run_group_tests(UnitTests, NULL, NULL);
 }
